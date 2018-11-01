@@ -14,9 +14,9 @@ public class Game extends Canvas implements Runnable{
     private Thread thread;
     private boolean running = false;
 
-    //14
-    //create an instance of handler object
+
     private Handler handler;
+    private HUD hud;
 
 
 
@@ -26,8 +26,8 @@ public class Game extends Canvas implements Runnable{
 
         new Window(WIDTH, HEIGHT, "Let's Build a Game!", this);
 
+        hud = new HUD();
 
-        //15
 
         handler.addObject(new Player(100,100, ID.Player));
         handler.addObject(new Enemy(150,10, ID.Enemy));
@@ -50,12 +50,13 @@ public class Game extends Canvas implements Runnable{
     }
 
     public void run(){
+        this.requestFocus();
         long lastTime = System.nanoTime();
         double amountOfTicks = 60.0;
         double ns = 1000000000 / amountOfTicks;
         double delta = 0;
         long timer = System.currentTimeMillis();
-        int frames = 0;
+       // int frames = 0; //for printing frames per sec
         while(running) {
             long now = System.nanoTime();
             delta += (now - lastTime) / ns;
@@ -66,12 +67,12 @@ public class Game extends Canvas implements Runnable{
             }
             if (running)
                 render();
-            frames++;
+          //  frames++;
 
             if (System.currentTimeMillis() - timer > 1000) {
                 timer += 1000;
                 //System.out.println("FPS: " + frames);
-                frames = 0;
+          //      frames = 0;
             }
         }
         stop();
@@ -79,14 +80,13 @@ public class Game extends Canvas implements Runnable{
     }
 
     private void tick(){
-        //16
-        //loops threw all objects
+
         handler.tick();
+        hud.tick();
     }
 
     public void render(){
-        //1
-        // add to lower FPS
+
         BufferStrategy bs = this.getBufferStrategy();
         if(bs == null){
             this.createBufferStrategy(3);
@@ -95,21 +95,28 @@ public class Game extends Canvas implements Runnable{
         Graphics g = bs.getDrawGraphics();
         //******************
 
-        //2
-        //set background color
         g.setColor(Color.CYAN);
         g.fillRect(0,0,WIDTH,HEIGHT);
 
-        //17
+
         handler.render(g);
 
+        hud.render(g);
 
         g.dispose();
         bs.show();
 
     }
 
+    public static int boundCheck(int value, int min, int max){
+        if (value >= max) return max;
+        if (value <= min) return min;
+        else return value;
+    }
+
+
     public static void main(String []args){
+
         new Game();
     }
 }

@@ -16,6 +16,10 @@ public class Player extends GameObject {
     public void tick() {
         x += velocityX;
         y += velocityY;
+
+        //bound this player from
+        x = Game.boundCheck(x, 0, Game.WIDTH-44);
+        y = Game.boundCheck(y, 0, Game.HEIGHT-66);
     }
 
     @Override

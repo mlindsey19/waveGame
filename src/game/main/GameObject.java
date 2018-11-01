@@ -1,30 +1,26 @@
 package game.main;
 
 import java.awt.*;
-//4
+
 public abstract class GameObject {
 
-    //5  goto
+
     protected int x, y;
     protected ID id;
     protected int velocityX, velocityY;
 
-    //7
-    //  constructor
+
     public GameObject(int x, int y, ID id){
         this.x = x;
         this.y = y;
         this.id = id;
     }
 
-    //8
-    //goto player class
     public abstract void tick();
     public abstract  void render(Graphics g);
 
-    //10
-    //add getters and setters
-    //got to handler
+
+
 
     public int getX() {
         return x;
