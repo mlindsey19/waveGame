@@ -17,6 +17,7 @@ public class Game extends Canvas implements Runnable{
 
     private Handler handler;
     private HUD hud;
+    private Spawn spawn;
 
 
 
@@ -27,10 +28,10 @@ public class Game extends Canvas implements Runnable{
         new Window(WIDTH, HEIGHT, "Let's Build a Game!", this);
 
         hud = new HUD();
+        spawn = new Spawn(handler, hud);
 
-
-        handler.addObject(new Player(100,100, ID.Player));
-        handler.addObject(new Enemy(150,10, ID.Enemy));
+        handler.addObject(new Player(100,100, ID.Player, handler));
+        handler.addObject(new Enemy(150,10, ID.Enemy, handler));
 
     }
 
@@ -56,7 +57,7 @@ public class Game extends Canvas implements Runnable{
         double ns = 1000000000 / amountOfTicks;
         double delta = 0;
         long timer = System.currentTimeMillis();
-       // int frames = 0; //for printing frames per sec
+        // int frames = 0; //for printing frames per sec
         while(running) {
             long now = System.nanoTime();
             delta += (now - lastTime) / ns;
@@ -67,12 +68,12 @@ public class Game extends Canvas implements Runnable{
             }
             if (running)
                 render();
-          //  frames++;
+            //  frames++;
 
             if (System.currentTimeMillis() - timer > 1000) {
                 timer += 1000;
                 //System.out.println("FPS: " + frames);
-          //      frames = 0;
+                //      frames = 0;
             }
         }
         stop();
