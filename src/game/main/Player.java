@@ -5,13 +5,10 @@ import java.awt.*;
 // make empty methods before going to 10
 public class Player extends GameObject {
 
-    Handler handler;
 
     public Player(int x, int y, ID id, Handler handler) {
-        super(x, y, id);
-        this.handler = handler;
+        super(x, y, id, handler);
 
-       // velocityX = 5;
 
     }
 @Override
@@ -36,21 +33,21 @@ public class Player extends GameObject {
     @Override
     public void render(Graphics g) {
         //18
-        //show adding a player object
+        //show adding a player objects
         //goto Game.game and add handler.addObject
         if (id == ID.Player)
-            g.setColor(Color.magenta);
+            g.setColor(Color.white);
         if(id == ID.Enemy)
             g.setColor(Color.blue);
         g.fillRect(x, y, 44,44);
     }
 
     private void collision(){
-        for (int i = 0; i < handler.object.size(); i++){
-            GameObject tempObject = handler.object.get(i);
+        for (int i = 0; i < handler.objects.size(); i++){
+            GameObject tempObject = handler.objects.get(i);
 
             if (tempObject.getId() == ID.Enemy){
-                if(getBounds().intersects(tempObject.getBounds()))
+                if(this.getBounds().intersects(tempObject.getBounds()))
                     HUD.health -= 2;
             }
         }

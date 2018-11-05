@@ -5,24 +5,23 @@ import java.awt.*;
 public class Trail extends GameObject {
 
     private  float alpha =1;
-    private Handler handler;
     private Color color;
     private int width, height;
-    private float life;
+    private float trailDuration;
 
-    public Trail(int x, int y, ID id, Handler handler, Color color, int width, int height, float life) {
-        super(x, y, id);
+    public Trail(int x, int y, ID id, Handler handler, Color color, int width, int height, float trailDuration) {
+        super(x, y, id, handler);
         this.color = color;
         this.handler = handler;
         this.width = width;
         this.height = height;
-        this.life = life;
+        this.trailDuration = trailDuration;
     }
 
     @Override
     public void tick() {
-        if (alpha > life) {
-            alpha -= life;
+        if (alpha > trailDuration) {
+            alpha -= trailDuration;
         }else handler.removeObject(this);
     }
 

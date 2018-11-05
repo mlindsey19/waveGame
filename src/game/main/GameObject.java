@@ -8,19 +8,28 @@ public abstract class GameObject {
     protected int x, y;
     protected ID id;
     protected int velocityX, velocityY;
+    protected Handler handler;
 
 
-    public GameObject(int x, int y, ID id){
+    public GameObject(int x, int y, ID id, Handler handler){
         this.x = x;
         this.y = y;
         this.id = id;
+        this.handler = handler;
     }
 
     public abstract void tick();
     public abstract  void render(Graphics g);
     public abstract Rectangle getBounds();
 
+    public void moveWithinWindow(){
+        x += velocityX;
+        y += velocityY;
 
+        //set bounds and reverse direction at bound
+        if(y <= 0 || y >= Game.HEIGHT - 48) velocityY *= -1;
+        if(x <= 0 || x >= Game.WIDTH - 32) velocityX *= -1;
+    }
 
 
 

@@ -2,7 +2,6 @@ package game.main;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
-import java.awt.image.ImageObserver;
 
 public class Game extends Canvas implements Runnable{
 
@@ -29,9 +28,8 @@ public class Game extends Canvas implements Runnable{
 
         hud = new HUD();
         spawn = new Spawn(handler, hud);
-
+        
         handler.addObject(new Player(100,100, ID.Player, handler));
-        handler.addObject(new Enemy(150,10, ID.Enemy, handler));
 
     }
 
@@ -84,6 +82,7 @@ public class Game extends Canvas implements Runnable{
 
         handler.tick();
         hud.tick();
+        spawn.tick();
     }
 
     public void render(){
@@ -96,7 +95,7 @@ public class Game extends Canvas implements Runnable{
         Graphics g = bs.getDrawGraphics();
         //******************
 
-        g.setColor(Color.CYAN);
+        g.setColor(Color.black);
         g.fillRect(0,0,WIDTH,HEIGHT);
 
 
