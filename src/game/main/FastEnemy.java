@@ -15,7 +15,8 @@ public class FastEnemy extends GameObject {
     public void tick() {
         moveWithinWindow();
 
-        handler.addObject(new Trail(x,y, ID.Trail, handler, Color.cyan, 16,16, 0.1f));
+        handler.addObject(
+                new Trail( (int) x,(int) y, ID.Trail, handler, Color.cyan, 16,16, 0.1f));
 
     }
 
@@ -24,12 +25,12 @@ public class FastEnemy extends GameObject {
     @Override
     public void render(Graphics g) {
         g.setColor(Color.cyan);
-        g.fillRect(x,y, 16,16);
+        g.fillRect( (int) x, (int) y, 16,16);
     }
 
     @Override
     public Rectangle getBounds() {
-        return new Rectangle(x, y, 16, 16);
+        return new Rectangle( (int) x,  (int) y, 16, 16);
     }
 }
 

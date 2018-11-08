@@ -28,7 +28,7 @@ public class Game extends Canvas implements Runnable{
 
         hud = new HUD();
         spawn = new Spawn(handler, hud);
-        
+
         handler.addObject(new Player(100,100, ID.Player, handler));
 
     }
@@ -108,7 +108,7 @@ public class Game extends Canvas implements Runnable{
 
     }
 
-    public static int boundCheck(int value, int min, int max){
+    public static float boundCheck(float value, float min, float max){
         if (value >= max) return max;
         if (value <= min) return min;
         else return value;

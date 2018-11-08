@@ -5,9 +5,9 @@ import java.awt.*;
 public abstract class GameObject {
 
 
-    protected int x, y;
+    protected float x, y;
     protected ID id;
-    protected int velocityX, velocityY;
+    protected float velocityX, velocityY;
     protected Handler handler;
 
 
@@ -17,6 +17,7 @@ public abstract class GameObject {
         this.id = id;
         this.handler = handler;
     }
+
 
     public abstract void tick();
     public abstract  void render(Graphics g);
@@ -33,19 +34,19 @@ public abstract class GameObject {
 
 
 
-    public int getX() {
+    public float getX() {
         return x;
     }
 
-    public void setX(int x) {
+    public void setX(float x) {
         this.x = x;
     }
 
-    public int getY() {
+    public float getY() {
         return y;
     }
 
-    public void setY(int y) {
+    public void setY(float y) {
         this.y = y;
     }
 
@@ -57,19 +58,19 @@ public abstract class GameObject {
         this.id = id;
     }
 
-    public int getVelocityX() {
+    public float getVelocityX() {
         return velocityX;
     }
 
-    public void setVelocityX(int velocityX) {
+    public void setVelocityX(float velocityX) {
         this.velocityX = velocityX;
     }
 
-    public int getVelocityY() {
+    public float getVelocityY() {
         return velocityY;
     }
 
-    public void setVelocityY(int velocityY) {
+    public void setVelocityY(float velocityY) {
         this.velocityY = velocityY;
     }
 }

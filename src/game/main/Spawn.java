@@ -19,18 +19,20 @@ public class Spawn {
     }
 
     public void tick(){
-        scoreCheck++;
+        scoreCheck = hud.getScore();
 
         if ( scoreCheck >= 500 ) {
             scoreCheck = 0;
             hud.setLevel( hud.getLevel() + 1 );
 
-            int randomWidth = random.nextInt((Game.WIDTH - 100)) + 100;
-            int  randomHeight = random.nextInt( (Game.HEIGHT - 100) ) + 100;
+            int randomWidth = random.nextInt(Game.WIDTH - 200) + 200 ;
+            int  randomHeight = random.nextInt( Game.HEIGHT - 100) + 100 ;
 
-            if( ( hud.getLevel() % 2 ) == 0 )
+            if (hud.getLevel() % 2 == 0)
+                handler.addObject( new SmartEnemy( randomWidth, randomHeight, ID.Enemy, handler));
+            if( ( hud.getLevel() % 3 ) == 0 )
                 handler.addObject( new BasicEnemy( randomWidth, randomHeight,ID.Enemy, handler) );
-            if ( ( hud.getLevel() % 3 )  == 0 )
+            if ( ( hud.getLevel() % 5 )  == 0 )
                 handler.addObject( new FastEnemy( randomWidth, randomHeight, ID.Enemy, handler ) );
         }
     }

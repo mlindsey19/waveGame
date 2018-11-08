@@ -15,20 +15,20 @@ public class BasicEnemy extends GameObject {
     }
     @Override
     public Rectangle getBounds(){
-        return new Rectangle(x,y,16,16);
+        return new Rectangle( (int) x, (int) y,16,16);
     }
     @Override
     public void tick() {
         moveWithinWindow();
 
-        handler.addObject(new Trail(x,y, ID.Trail, handler, Color.red, 16,16, 0.1f));
+        handler.addObject(new Trail( (int) x, (int) y, ID.Trail, handler, Color.red, 16,16, 0.1f));
 
     }
 
     @Override
     public void render(Graphics g) {
         g.setColor(Color.red);
-        g.fillRect(x,y, 16,16);
+        g.fillRect( (int) x, (int) y, 16,16);
 
     }
 }
